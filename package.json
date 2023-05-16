@@ -43,7 +43,10 @@
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "rules": {}
+    "rules": {
+      "space-before-function-paren": "off",
+      "pretter/prettier": "off"
+    }
   },
   "browserslist": [
     "> 1%",
