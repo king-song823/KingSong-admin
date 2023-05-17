@@ -1,30 +1,42 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <div class="login-container">
+    <el-form class="login-form" ref="loginFromRef">
+      <div class="title-container">
+        <h3 class="title">用户登录</h3>
+      </div>
+
+      <el-form-item prop="username">
+        <span class="svg-container">
+          <el-icon>
+            <avatar />
+          </el-icon>
+        </span>
+        <el-input placeholder="username" name="username" type="text" />
+      </el-form-item>
+
+      <el-form-item prop="password">
+        <span class="svg-container">
+          <el-icon>
+            <avatar />
+          </el-icon>
+        </span>
+        <el-input placeholder="password" name="password" />
+        <span class="show-pwd">
+          <el-icon>
+            <avatar />
+          </el-icon>
+        </span>
+      </el-form-item>
+
+      <el-button type="primary" style="width: 100%; margin-bottom: 30px"
+        >登录</el-button
+      >
+    </el-form>
   </div>
-  <router-view />
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-</style>
+<script setup>
+// 导入组件之后无需注册可直接使用
+import { Avatar } from '@element-plus/icons'
+import {} from 'vue'
+</script>
