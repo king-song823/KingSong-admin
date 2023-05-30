@@ -1,8 +1,8 @@
 <!--
  * @Author: ink-song 229135518@qq.com
  * @Date: 2023-05-18 00:23:24
- * @LastEditors: ink-song 229135518@qq.com
- * @LastEditTime: 2023-05-18 00:23:47
+ * @LastEditors: Ice songbing940823@gmail.com
+ * @LastEditTime: 2023-05-30 14:12:49
  * @FilePath: /imooc-admin/src/components/SvgIcon/index.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -22,7 +22,6 @@
 import { isExternal as external } from '@/utils/validate'
 import { defineProps, computed } from 'vue'
 const props = defineProps({
-  // icon 图标
   icon: {
     type: String,
     required: true
