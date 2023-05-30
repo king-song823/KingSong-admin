@@ -1,6 +1,11 @@
 <template>
   <div class="login-container">
-    <el-form class="login-form" ref="loginFromRef">
+    <el-form
+      class="login-form"
+      ref="loginFromRef"
+      :model="loginForm"
+      :rules="loginRules"
+    >
       <div class="title-container">
         <h3 class="title">用户登录</h3>
       </div>
@@ -11,17 +16,30 @@
             <svg-icon icon="user" />
           </span>
         </span>
-        <el-input placeholder="username" name="username" type="text" />
+        <el-input
+          v-model="loginForm.userName"
+          placeholder="username"
+          name="username"
+          type="text"
+        />
       </el-form-item>
 
       <el-form-item prop="password">
         <span class="svg-container">
           <svg-icon icon="password" />
         </span>
-        <el-input placeholder="password" name="password" />
+        <el-input
+          v-model="loginForm.password"
+          placeholder="password"
+          :type="passwordType"
+          name="password"
+        />
         <span class="show-pwd">
           <span class="svg-container">
-            <svg-icon icon="eye" />
+            <svg-icon
+              :icon="passwordType === 'password' ? 'eye' : 'eye-open'"
+              @click="changePwdType"
+            />
           </span>
         </span>
       </el-form-item>
@@ -35,6 +53,45 @@
 <script setup>
 // 导入组件之后无需注册可直接使用
 import SvgIcon from '@/components/SvgIcon/index.vue'
+import { ref } from 'vue'
+import { validatePassword } from './rules'
+const loginForm = ref({
+  userName: 'admin',
+  password: '2312'
+})
+const passwordType = ref('password')
+
+const loginRules = ref({
+  userName: [
+    {
+      required: true,
+      trigger: 'blur',
+      message: '用户名为必填项'
+    },
+    {
+      min: 3,
+      max: 10,
+      trigger: 'blur',
+      message: '长度在 3 到 10 个字符'
+    }
+  ],
+  password: [
+    {
+      required: true,
+      trigger: 'blur',
+      validator: validatePassword()
+    },
+    {
+      min: 6,
+      max: 20,
+      trigger: 'blur',
+      message: '长度在 6 到 20 个字符'
+    }
+  ]
+})
+const changePwdType = () => {
+  passwordType.value = passwordType.value === 'password' ? 'text' : 'password'
+}
 </script>
 
 <style lang="scss" scoped>
