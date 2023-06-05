@@ -1,8 +1,8 @@
 /*
  * @Author: ink-song 229135518@qq.com
  * @Date: 2023-05-23 22:44:25
- * @LastEditors: ink-song 229135518@qq.com
- * @LastEditTime: 2023-05-23 22:44:36
+ * @LastEditors: Ice songbing940823@gmail.com
+ * @LastEditTime: 2023-05-31 09:37:15
  * @FilePath: /imooc-admin/vue.config.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -26,5 +26,16 @@ module.exports = {
         symbolId: 'icon-[name]'
       })
       .end()
+  },
+  devServer: {
+    // 配置反向代理
+    proxy: {
+      // 当地址中有/api的时候会触发代理机制
+      '/api': {
+        // 要代理的服务器地址  这里不用写 api
+        target: 'https://api.imooc-admin.lgdsunday.club/',
+        changeOrigin: true // 是否跨域
+      }
+    }
   }
 }
