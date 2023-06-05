@@ -17,7 +17,7 @@
           </span>
         </span>
         <el-input
-          v-model="loginForm.userName"
+          v-model="loginForm.username"
           placeholder="username"
           name="username"
           type="text"
@@ -44,7 +44,11 @@
         </span>
       </el-form-item>
 
-      <el-button type="primary" style="width: 100%; margin-bottom: 30px"
+      <el-button
+        type="primary"
+        style="width: 100%; margin-bottom: 30px"
+        @click="handleSubmit"
+        :loading="loading"
         >登录</el-button
       >
     </el-form>
@@ -55,14 +59,15 @@
 import SvgIcon from '@/components/SvgIcon/index.vue'
 import { ref } from 'vue'
 import { validatePassword } from './rules'
-const loginForm = ref({
-  userName: 'admin',
-  password: '2312'
-})
+import { useLogin } from '../../hooks/login/useLogin'
+import { useToken } from '../../hooks/useToken'
+
+const { loginForm, setLogin } = useLogin()
+const { setToken } = useToken()
 const passwordType = ref('password')
 
 const loginRules = ref({
-  userName: [
+  username: [
     {
       required: true,
       trigger: 'blur',
@@ -70,9 +75,9 @@ const loginRules = ref({
     },
     {
       min: 3,
-      max: 10,
+      max: 20,
       trigger: 'blur',
-      message: '长度在 3 到 10 个字符'
+      message: '长度在 3 到 20 个字符'
     }
   ],
   password: [
@@ -91,6 +96,24 @@ const loginRules = ref({
 })
 const changePwdType = () => {
   passwordType.value = passwordType.value === 'password' ? 'text' : 'password'
+}
+
+const loginFromRef = ref(null)
+
+const loading = ref(false)
+
+const handleSubmit = () => {
+  loading.value = true
+  loginFromRef.value.validate(async (valid) => {
+    if (valid) {
+      const data = await setLogin()
+      setToken(data.token)
+    } else {
+      console.log('error submit!!')
+      return false
+    }
+  })
+  loading.value = false
 }
 </script>
 
