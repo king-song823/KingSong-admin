@@ -2,7 +2,7 @@
  * @Author: Ice songbing940823@gmail.com
  * @Date: 2023-05-30 16:07:04
  * @LastEditors: Ice songbing940823@gmail.com
- * @LastEditTime: 2023-05-31 09:52:05
+ * @LastEditTime: 2023-06-06 14:56:22
  * @FilePath: /imooc-admin/src/api/sys.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -13,5 +13,14 @@ export const login = (data) => {
     url: `/sys/login`,
     method: 'post',
     data
+  })
+}
+
+/**
+ * 获取用户信息
+ */
+export const getUserInfoApi = () => {
+  return request({
+    url: '/sys/profile'
   })
 }
