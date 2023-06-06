@@ -1,8 +1,8 @@
 /*
  * @Author: Ice songbing940823@gmail.com
  * @Date: 2023-05-30 16:03:21
- * @LastEditors: ink-song 229135518@qq.com
- * @LastEditTime: 2023-06-05 22:42:35
+ * @LastEditors: Ice songbing940823@gmail.com
+ * @LastEditTime: 2023-06-06 14:11:21
  * @FilePath: /imooc-admin/src/utils/request.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -25,11 +25,11 @@ service.interceptors.request.use((config) => {
 // 响应器拦截
 service.interceptors.response.use(
   (response) => {
-    const { data, message, code } = response
-    if (code === 200) {
+    const { data } = response
+    if (data.code === 200) {
       return data
     } else {
-      ElMessage.error(message)
+      ElMessage.error(data.message)
     }
   },
   (error) => {

@@ -61,10 +61,13 @@ import { ref } from 'vue'
 import { validatePassword } from './rules'
 import { useLogin } from '../../hooks/login/useLogin'
 import { useToken } from '../../hooks/useToken'
+// 导入路由
+import { useRouter } from 'vue-router'
 
 const { loginForm, setLogin } = useLogin()
 const { setToken } = useToken()
 const passwordType = ref('password')
+const router = useRouter()
 
 const loginRules = ref({
   username: [
@@ -107,7 +110,9 @@ const handleSubmit = () => {
   loginFromRef.value.validate(async (valid) => {
     if (valid) {
       const data = await setLogin()
+      console.log(data)
       setToken(data.token)
+      router.push('/')
     } else {
       console.log('error submit!!')
       return false
