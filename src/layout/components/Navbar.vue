@@ -30,8 +30,8 @@
 </template>
 
 <script setup>
-import { useUser } from '../../hooks/useUser'
-import { useLogin } from '../../hooks/login/useLogin'
+import { useUser } from '@/hooks/useUser'
+import { useLogin } from '@/hooks/useLogin'
 
 const { userInfo } = useUser()
 const { logout } = useLogin()

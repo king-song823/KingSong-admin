@@ -59,8 +59,9 @@
 import SvgIcon from '@/components/SvgIcon/index.vue'
 import { ref } from 'vue'
 import { validatePassword } from './rules'
-import { useLogin } from '../../hooks/login/useLogin'
-import { useToken } from '../../hooks/useToken'
+import { useLogin } from '@/hooks/useLogin'
+import { useToken } from '@/hooks/useToken'
+import { useTimeStap } from '@/hooks/useTimeStap'
 // 导入路由
 import { useRouter } from 'vue-router'
 
@@ -68,6 +69,7 @@ const { loginForm, setLogin } = useLogin()
 const { setToken } = useToken()
 const passwordType = ref('password')
 const router = useRouter()
+const { setTimeStamp } = useTimeStap()
 
 const loginRules = ref({
   username: [
@@ -111,7 +113,8 @@ const handleSubmit = () => {
     if (valid) {
       const data = await setLogin()
       console.log(data)
-      setToken(data.token)
+      await setToken(data.token)
+      await setTimeStamp()
       router.push('/')
     } else {
       console.log('error submit!!')
