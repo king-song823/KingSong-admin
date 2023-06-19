@@ -1,8 +1,8 @@
 /*
  * @Author: Ice songbing940823@gmail.com
  * @Date: 2023-05-30 16:03:21
- * @LastEditors: Ice songbing940823@gmail.com
- * @LastEditTime: 2023-06-06 18:16:09
+ * @LastEditors: ice-7777777 15519586771@163.com
+ * @LastEditTime: 2023-06-19 09:59:54
  * @FilePath: /imooc-admin/src/utils/request.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -52,7 +52,10 @@ service.interceptors.response.use(
     }
   },
   (error) => {
-    const { message } = error.response.data
+    const { message, code } = error.response.data
+    if (code === 401) {
+      logout()
+    }
     ElMessage.error(message)
     return Promise.reject(error)
   }

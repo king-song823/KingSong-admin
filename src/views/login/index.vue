@@ -112,7 +112,6 @@ const handleSubmit = () => {
   loginFromRef.value.validate(async (valid) => {
     if (valid) {
       const data = await setLogin()
-      console.log(data)
       await setToken(data.token)
       await setTimeStamp()
       router.push('/')
