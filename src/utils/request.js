@@ -2,7 +2,7 @@
  * @Author: Ice songbing940823@gmail.com
  * @Date: 2023-05-30 16:03:21
  * @LastEditors: ice-7777777 15519586771@163.com
- * @LastEditTime: 2023-06-26 10:36:10
+ * @LastEditTime: 2023-06-28 15:27:27
  * @FilePath: /imooc-admin/src/utils/request.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -27,9 +27,7 @@ service.interceptors.request.use((config) => {
   config.headers.codeType = time
   config.headers.icode = icode
   // 当含有token，就携带token
-  console.log('-----', getToken())
   if (getToken()) {
-    console.log('isTimeOut()', isTimeOut())
     if (isTimeOut()) {
       logout()
 

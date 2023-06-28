@@ -2,13 +2,13 @@
  * @Author: ice-7777777 15519586771@163.com
  * @Date: 2023-06-26 17:24:55
  * @LastEditors: ice-7777777 15519586771@163.com
- * @LastEditTime: 2023-06-26 17:25:10
+ * @LastEditTime: 2023-06-28 14:32:01
  * @FilePath: /imooc-admin/src/layout/components/SidebarItem.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
 <template>
   <!-- 支持渲染多级 menu 菜单 -->
-  <el-submenu v-if="route.children.length > 0" :index="route.path">
+  <el-submenu router v-if="route.children.length > 0" :index="route.path">
     <template #title>
       <menu-item :title="route.meta.title" :icon="route.meta.icon"></menu-item>
     </template>
@@ -20,7 +20,7 @@
     ></sidebar-item>
   </el-submenu>
   <!-- 渲染 item 项 -->
-  <el-menu-item v-else :index="route.path">
+  <el-menu-item v-else :index="route.path" :route="rout">
     <menu-item :title="route.meta.title" :icon="route.meta.icon"></menu-item>
   </el-menu-item>
 </template>
