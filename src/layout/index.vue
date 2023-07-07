@@ -2,18 +2,20 @@
  * @Author: ice-7777777 15519586771@163.com
  * @Date: 2023-05-30 14:25:41
  * @LastEditors: ice-7777777 15519586771@163.com
- * @LastEditTime: 2023-06-28 17:01:36
+ * @LastEditTime: 2023-07-07 15:18:30
  * @FilePath: /imooc-admin/src/layout/index.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
 <template>
-  <div class="app-wrapper">
+  <div
+    class="app-wrapper"
+    :class="[sidebarOpened ? 'openSidebar' : 'hideSidebar']"
+  >
     <!-- 左侧 menu -->
     <sidebar
       id="guide-sidebar"
       class="sidebar-container"
       :style="{ backgroundColor: variables.menuBg }"
-      :class="[sidebarOpened ? 'openSidebar' : 'hideSidebar']"
     />
     <div class="main-container">
       <div class="fixed-header">
@@ -53,7 +55,7 @@ const { sidebarOpened } = useSidebarOpened()
   right: 0;
   z-index: 9;
   width: calc(100% - #{$sideBarWidth});
-  transition: width 0.28s;
+  transition: width #{$sideBarDuration};
 }
 
 .hideSidebar .fixed-header {
