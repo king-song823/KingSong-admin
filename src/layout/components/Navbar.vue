@@ -2,7 +2,7 @@
  * @Author: ice-7777777 15519586771@163.com
  * @Date: 2023-06-17 14:13:57
  * @LastEditors: ice-7777777 15519586771@163.com
- * @LastEditTime: 2023-06-28 16:13:31
+ * @LastEditTime: 2023-07-07 15:23:20
  * @FilePath: /imooc-admin/src/layout/components/Navbar.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -16,7 +16,7 @@
         <div class="avatar-wrapper">
           <el-avatar
             shape="square"
-            :size="40"
+            :size="logoHeight"
             :src="userInfo.avatar"
           ></el-avatar>
           <i class="el-icon-s-tools"></i>
@@ -46,6 +46,7 @@ import Breadcrumb from './Breadcrumb/index.vue'
 import Hamburger from './Hamburger/index.vue'
 const { userInfo } = useUser()
 const { logout } = useLogin()
+const logoHeight = 44
 </script>
 
 <style lang="scss" scoped>
