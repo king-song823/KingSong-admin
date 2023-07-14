@@ -1,8 +1,8 @@
 <!--
  * @Author: ice-7777777 15519586771@163.com
  * @Date: 2023-06-17 14:13:57
- * @LastEditors: ice-7777777 15519586771@163.com
- * @LastEditTime: 2023-07-07 15:23:20
+ * @LastEditors: ink-song 229135518@qq.com
+ * @LastEditTime: 2023-07-14 23:56:20
  * @FilePath: /imooc-admin/src/layout/components/Navbar.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -11,6 +11,7 @@
     <hamburger class="hamburger-container" />
     <breadcrumb class="breadcrumb-container" />
     <div class="right-menu">
+      <lang-select class="right-menu-item hover-effect" />
       <!-- 头像 -->
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
@@ -44,6 +45,7 @@ import { useUser } from '@/hooks/useUser'
 import { useLogin } from '@/hooks/useLogin'
 import Breadcrumb from './Breadcrumb/index.vue'
 import Hamburger from './Hamburger/index.vue'
+import LangSelect from './LangSelect/index.vue'
 const { userInfo } = useUser()
 const { logout } = useLogin()
 const logoHeight = 44
@@ -72,6 +74,17 @@ const logoHeight = 44
           --el-avatar-background-color: none;
           margin-right: 12px;
         }
+      }
+    }
+    ::v-deep .right-menu-item {
+      display: inline-block;
+      padding: 0 18px 0 0;
+      font-size: 24px;
+      color: #5a5e66;
+      vertical-align: text-bottom;
+
+      &.hover-effect {
+        cursor: pointer;
       }
     }
   }
