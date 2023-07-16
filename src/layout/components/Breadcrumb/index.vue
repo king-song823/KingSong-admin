@@ -1,8 +1,8 @@
 <!--
  * @Author: ice-7777777 15519586771@163.com
  * @Date: 2023-06-28 14:11:56
- * @LastEditors: ice-7777777 15519586771@163.com
- * @LastEditTime: 2023-07-07 15:26:43
+ * @LastEditors: ink-song 229135518@qq.com
+ * @LastEditTime: 2023-07-16 23:26:59
  * @FilePath: /imooc-admin/src/layout/components/Breadcrumb/index.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -14,10 +14,10 @@
         :key="item.path"
       >
         <span v-if="index === breadcrumbData.length - 1" class="no-redirect">
-          {{ item.meta.title }}
+          {{ generateTitle(item.meta.title) }}
         </span>
         <a v-else class="redirect" @click.prevent="onLinkClick(item)">{{
-          item.meta.title
+          generateTitle(item.meta.title)
         }}</a>
       </el-breadcrumb-item>
     </transition-group>
@@ -28,6 +28,7 @@
 import { ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import variables from '@/styles/variables.scss'
+import { generateTitle } from '@/utils/i18n'
 
 const route = useRoute()
 const router = useRouter()

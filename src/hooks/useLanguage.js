@@ -7,8 +7,12 @@ export const useLanguage = () => {
     setItem(LANG, lang)
     language.value = lang
   }
+  const getLanguage = () => {
+    return localStorage.getItem(LANG) || language.value
+  }
   return {
     language,
-    setLanguage
+    setLanguage,
+    getLanguage
   }
 }

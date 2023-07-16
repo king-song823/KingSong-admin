@@ -7,9 +7,9 @@
       :rules="loginRules"
     >
       <div class="title-container">
-        <h3 class="title">用户登录</h3>
+        <h3 class="title">{{ $t('msg.login.title') }}</h3>
       </div>
-
+      <lang-select class="right-menu-item hover-effect" />
       <el-form-item prop="username">
         <span class="svg-container">
           <span class="svg-container">
@@ -49,8 +49,9 @@
         style="width: 100%; margin-bottom: 30px"
         @click="handleSubmit"
         :loading="loading"
-        >登录</el-button
+        >{{ $t('msg.login.loginBtn') }}</el-button
       >
+      <div class="tips" v-html="$t('msg.login.desc')"></div>
     </el-form>
   </div>
 </template>
@@ -58,44 +59,31 @@
 // 导入组件之后无需注册可直接使用
 import SvgIcon from '@/components/SvgIcon/index.vue'
 import { ref } from 'vue'
-import { validatePassword } from './rules'
+import { validatePassword, validateUserName } from './rules'
 import { useLogin } from '@/hooks/useLogin'
 import { useToken } from '@/hooks/useToken'
 import { useTimeStap } from '@/hooks/useTimeStap'
-// 导入路由
+import { ElMessage } from 'element-plus'
+import LangSelect from '../../layout/components/LangSelect/index.vue'
 import { useRouter } from 'vue-router'
-
 const { loginForm, setLogin } = useLogin()
 const { setToken } = useToken()
 const passwordType = ref('password')
-const router = useRouter()
 const { setTimeStamp } = useTimeStap()
-
+const router = useRouter()
 const loginRules = ref({
   username: [
     {
       required: true,
-      trigger: 'blur',
-      message: '用户名为必填项'
-    },
-    {
-      min: 3,
-      max: 20,
-      trigger: 'blur',
-      message: '长度在 3 到 20 个字符'
+      trigger: 'change',
+      validator: validateUserName()
     }
   ],
   password: [
     {
       required: true,
-      trigger: 'blur',
+      trigger: 'change',
       validator: validatePassword()
-    },
-    {
-      min: 6,
-      max: 20,
-      trigger: 'blur',
-      message: '长度在 6 到 20 个字符'
     }
   ]
 })
@@ -111,8 +99,12 @@ const handleSubmit = () => {
   loading.value = true
   loginFromRef.value.validate(async (valid) => {
     if (valid) {
-      const data = await setLogin()
-      await setToken(data.token)
+      const { data, message } = await setLogin()
+      if (!data) {
+        ElMessage.error(message)
+        return false
+      }
+      await setToken(data?.token)
       await setTimeStamp()
       router.push('/')
     } else {
@@ -149,6 +141,18 @@ $cursor: #fff;
       background: rgba(0, 0, 0, 0.1);
       border-radius: 5px;
       color: #454545;
+    }
+
+    ::v-deep .right-menu-item {
+      display: inline-block;
+      padding: 0 18px 0 0;
+      font-size: 24px;
+      color: #5a5e66;
+      vertical-align: text-bottom;
+
+      &.hover-effect {
+        cursor: pointer;
+      }
     }
 
     ::v-deep .el-input {

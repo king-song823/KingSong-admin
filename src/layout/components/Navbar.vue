@@ -2,7 +2,7 @@
  * @Author: ice-7777777 15519586771@163.com
  * @Date: 2023-06-17 14:13:57
  * @LastEditors: ink-song 229135518@qq.com
- * @LastEditTime: 2023-07-14 23:56:20
+ * @LastEditTime: 2023-07-16 22:56:00
  * @FilePath: /imooc-admin/src/layout/components/Navbar.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -25,13 +25,13 @@
         <template #dropdown>
           <el-dropdown-menu class="user-dropdown">
             <router-link to="/">
-              <el-dropdown-item> 首页 </el-dropdown-item>
+              <el-dropdown-item> {{ $t('msg.navBar.home') }} </el-dropdown-item>
             </router-link>
             <a target="_blank" href="">
-              <el-dropdown-item>课程主页</el-dropdown-item>
+              <el-dropdown-item>{{ $t('msg.navBar.course') }}</el-dropdown-item>
             </a>
             <el-dropdown-item divided @click="logout">
-              退出登录
+              {{ $t('msg.navBar.logout') }}
             </el-dropdown-item>
           </el-dropdown-menu>
         </template>

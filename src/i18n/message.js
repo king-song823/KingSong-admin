@@ -1,12 +1,14 @@
+import mZhLocale from './lang/zh'
+import mEnLocale from './lang/en'
 export default {
   en: {
     msg: {
-      test: 'hello world'
+      ...mEnLocale
     }
   },
   zh: {
     msg: {
-      test: '你好世界'
+      ...mZhLocale
     }
   }
 }

@@ -1,8 +1,8 @@
 /*
  * @Author: Ice songbing940823@gmail.com
  * @Date: 2023-05-30 16:03:21
- * @LastEditors: ice-7777777 15519586771@163.com
- * @LastEditTime: 2023-06-28 15:27:27
+ * @LastEditors: ink-song 229135518@qq.com
+ * @LastEditTime: 2023-07-16 23:00:23
  * @FilePath: /imooc-admin/src/utils/request.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -30,7 +30,6 @@ service.interceptors.request.use((config) => {
   if (getToken()) {
     if (isTimeOut()) {
       logout()
-
       // 如果过期了，就清除token
       ElMessage.error('token过期了，请重新登录')
       return Promise.reject(new Error('token过期了，请重新登录'))
@@ -51,7 +50,7 @@ service.interceptors.response.use(
     }
   },
   (error) => {
-    const { message, code } = error.response.data
+    const { message, code } = error?.response?.data
     if (code === 401) {
       logout()
     }
