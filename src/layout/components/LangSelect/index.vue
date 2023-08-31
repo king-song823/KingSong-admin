@@ -1,3 +1,11 @@
+<!--
+ * @Author: ink-song 229135518@qq.com
+ * @Date: 2023-08-23 13:44:06
+ * @LastEditors: ink-song 229135518@qq.com
+ * @LastEditTime: 2023-09-01 00:21:20
+ * @FilePath: /imooc-admin/src/layout/components/LangSelect/index.vue
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
 <template>
   <el-dropdown
     trigger="click"
@@ -6,7 +14,7 @@
   >
     <div>
       <el-tooltip :content="$t('msg.navBar.lang')" :effect="effect">
-        <svg-icon icon="language" />
+        <svg-icon id="guide-lang" icon="language" />
       </el-tooltip>
     </div>
     <template #dropdown>

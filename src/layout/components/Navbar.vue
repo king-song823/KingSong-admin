@@ -1,8 +1,8 @@
 <!--
  * @Author: ice-7777777 15519586771@163.com
  * @Date: 2023-06-17 14:13:57
- * @LastEditors: ice-7777777 15519586771@163.com
- * @LastEditTime: 2023-08-23 15:00:03
+ * @LastEditors: ink-song 229135518@qq.com
+ * @LastEditTime: 2023-09-01 00:22:05
  * @FilePath: /imooc-admin/src/layout/components/Navbar.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -15,7 +15,7 @@
       <lang-select class="right-menu-item hover-effect" />
       <screenfull class="right-menu-item hover-effect" />
       <header-search class="right-menu-item hover-effect" />
-
+      <guide class="right-menu-item hover-effect" />
       <!-- 头像 -->
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
@@ -53,6 +53,7 @@ import LangSelect from './LangSelect/index.vue'
 import ThemePicker from '@/components/ThemePicker/index.vue'
 import Screenfull from '@/components/Screenfull'
 import HeaderSearch from '@/components/HeaderSearch'
+import Guide from '@/components/Guide'
 const { userInfo } = useUser()
 const { logout } = useLogin()
 const logoHeight = 44

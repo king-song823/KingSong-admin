@@ -1,8 +1,8 @@
 <!--
  * @Author: ice-7777777 15519586771@163.com
  * @Date: 2023-08-23 14:37:06
- * @LastEditors: ice-7777777 15519586771@163.com
- * @LastEditTime: 2023-08-25 17:24:39
+ * @LastEditors: ink-song 229135518@qq.com
+ * @LastEditTime: 2023-09-01 00:19:15
  * @FilePath: /imooc-admin/src/layout/components/HeaderSearch/index.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -10,6 +10,7 @@
   <div :class="{ show: isShow }" class="header-search">
     <svg-icon
       class-name="search-icon"
+      id="guide-search"
       icon="search"
       @click.stop="onShowClick"
     />
