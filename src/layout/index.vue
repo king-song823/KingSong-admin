@@ -1,8 +1,8 @@
 <!--
  * @Author: ice-7777777 15519586771@163.com
  * @Date: 2023-05-30 14:25:41
- * @LastEditors: ice-7777777 15519586771@163.com
- * @LastEditTime: 2023-07-07 15:18:30
+ * @LastEditors: ink-song 229135518@qq.com
+ * @LastEditTime: 2023-08-26 18:27:49
  * @FilePath: /imooc-admin/src/layout/index.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -21,6 +21,7 @@
       <div class="fixed-header">
         <!-- 顶部的 navbar -->
         <navbar />
+        <tags-view />
       </div>
       <!-- 内容区 -->
       <app-main />
@@ -34,6 +35,7 @@ import Sidebar from './components/Sidebar'
 import AppMain from './components/AppMain'
 import variables from '@/styles/variables.scss'
 import { useSidebarOpened } from '@/hooks/useSidebarOpened'
+import TagsView from '@/components/TagsView'
 
 const { sidebarOpened } = useSidebarOpened()
 </script>
