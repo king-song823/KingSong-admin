@@ -107,8 +107,8 @@ const handleSubmit = () => {
         ElMessage.error(message)
         return false
       }
-      await setToken(data?.token)
-      await setTimeStamp()
+      setToken(data?.token)
+      setTimeStamp()
       router.push('/')
     } else {
       console.log('error submit!!')
@@ -151,6 +151,8 @@ $cursor: #fff;
       background: rgba(0, 0, 0, 0.1);
       border-radius: 5px;
       color: #454545;
+      box-shadow: none;
+      background: transparent;
     }
 
     ::v-deep .el-input {
@@ -173,15 +175,16 @@ $cursor: #fff;
       display: inline-block;
       // height: 47px;
       width: 85%;
-
+      outline: none;
       input {
         background: transparent;
         border: 0px !important;
         -webkit-appearance: none;
+        outline: 0;
         border-radius: 0px;
         padding: 12px 5px 12px 15px;
         color: $light_gray;
-        height: 47px;
+        // height: 47px;
         caret-color: $cursor;
       }
     }
