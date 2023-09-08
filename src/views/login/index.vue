@@ -21,6 +21,7 @@
           placeholder="username"
           name="username"
           type="text"
+          class="input-with-bg"
         />
       </el-form-item>
 
@@ -33,6 +34,7 @@
           placeholder="password"
           :type="passwordType"
           name="password"
+          class="input-with-bg"
         />
         <span class="show-pwd">
           <span class="svg-container">
@@ -46,6 +48,7 @@
 
       <el-button
         type="primary"
+        size="large"
         style="width: 100%; margin-bottom: 30px"
         @click="handleSubmit"
         :loading="loading"
@@ -143,6 +146,17 @@ $cursor: #fff;
       color: #454545;
     }
 
+    ::v-deep .el-input__wrapper {
+      border: none;
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+      color: #454545;
+    }
+
+    ::v-deep .el-input {
+      height: auto !important;
+    }
+
     ::v-deep .right-menu-item {
       display: inline-block;
       padding: 0 18px 0 0;
@@ -157,12 +171,12 @@ $cursor: #fff;
 
     ::v-deep .el-input {
       display: inline-block;
-      height: 47px;
+      // height: 47px;
       width: 85%;
 
       input {
         background: transparent;
-        border: 0px;
+        border: 0px !important;
         -webkit-appearance: none;
         border-radius: 0px;
         padding: 12px 5px 12px 15px;

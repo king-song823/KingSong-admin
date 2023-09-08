@@ -1,8 +1,8 @@
 <!--
  * @Author: ink-song 229135518@qq.com
  * @Date: 2023-08-23 13:44:06
- * @LastEditors: ink-song 229135518@qq.com
- * @LastEditTime: 2023-09-01 00:21:20
+ * @LastEditors: ice-7777777 15519586771@163.com
+ * @LastEditTime: 2023-09-06 13:40:04
  * @FilePath: /imooc-admin/src/layout/components/LangSelect/index.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -46,7 +46,6 @@ defineProps({
   }
 })
 const i18n = useI18n()
-console.log('language.value', language.value)
 setLanguage(language.value)
 const handleSetLanguage = (lang) => {
   i18n.locale.value = lang
