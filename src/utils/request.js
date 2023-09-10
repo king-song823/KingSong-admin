@@ -2,7 +2,7 @@
  * @Author: Ice songbing940823@gmail.com
  * @Date: 2023-05-30 16:03:21
  * @LastEditors: ink-song 229135518@qq.com
- * @LastEditTime: 2023-07-16 23:00:23
+ * @LastEditTime: 2023-09-10 23:35:52
  * @FilePath: /imooc-admin/src/utils/request.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -21,11 +21,14 @@ import { useToken } from '@/hooks/useToken'
 const { getToken } = useToken()
 const { isTimeOut } = useTimeStap()
 const { logout } = useLogin()
-
+import { useLanguage } from '@/hooks/useLanguage'
+const { language } = useLanguage()
 service.interceptors.request.use((config) => {
   const { icode, time } = getTestICode()
   config.headers.codeType = time
   config.headers.icode = icode
+  config.headers['Accept-Language'] = language
+
   // 当含有token，就携带token
   if (getToken()) {
     if (isTimeOut()) {

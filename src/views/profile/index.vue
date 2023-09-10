@@ -1,19 +1,59 @@
 <!--
- * @Author: ice-7777777 15519586771@163.com
- * @Date: 2023-06-26 09:36:08
+ * @Author: ink-song 229135518@qq.com
+ * @Date: 2023-08-23 13:44:06
  * @LastEditors: ink-song 229135518@qq.com
- * @LastEditTime: 2023-07-25 22:17:40
- * @FilePath: /imooc-admin/src/views/profile/index.vue
+ * @LastEditTime: 2023-09-10 23:39:42
+ * @FilePath: /imooc-admin 2/src/views/profile/index.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
 <template>
-  <span>profile</span>
-  <el-row>
-    <el-button>Default</el-button>
-    <el-button type="primary">Primary</el-button>
-    <el-button type="success">Success</el-button>
-    <el-button type="info">Info</el-button>
-    <el-button type="warning">Warning</el-button>
-    <el-button type="danger">Danger</el-button>
-  </el-row>
+  <div class="my-container">
+    <el-row>
+      <el-col :span="6">
+        <project-card class="user-card" :features="featureData"></project-card>
+      </el-col>
+      <el-col :span="18">
+        <el-card>
+          <el-tabs v-model="activeName">
+            <el-tab-pane :label="$t('msg.profile.feature')" name="feature">
+              <Feature />
+            </el-tab-pane>
+            <el-tab-pane :label="$t('msg.profile.chapter')" name="chapter">
+              <chapter />
+            </el-tab-pane>
+            <el-tab-pane :label="$t('msg.profile.author')" name="author">
+              <author />
+            </el-tab-pane>
+          </el-tabs>
+        </el-card>
+      </el-col>
+    </el-row>
+  </div>
 </template>
+<script setup>
+import ProjectCard from './components/ProjectCard.vue'
+import Chapter from './components/chapter.vue'
+import Feature from './components/feature.vue'
+import Author from './components/author.vue'
+import { ref } from 'vue'
+const activeName = ref('feature')
+import { feature } from '@/api/user'
+import { watchSwitchLang } from '@/utils/i18n'
+
+const featureData = ref([])
+const getFeatureData = async () => {
+  const { data } = await feature()
+  featureData.value = data
+}
+getFeatureData()
+// 监听语言切换
+watchSwitchLang(getFeatureData)
+</script>
+
+<style lang="scss" scoped>
+.my-container {
+  .user-card {
+    margin-right: 20px;
+  }
+}
+</style>
