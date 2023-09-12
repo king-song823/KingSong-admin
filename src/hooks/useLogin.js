@@ -2,7 +2,7 @@
  * @Author: Ice songbing940823@gmail.com
  * @Date: 2023-05-30 16:11:31
  * @LastEditors: ink-song 229135518@qq.com
- * @LastEditTime: 2023-07-16 22:36:22
+ * @LastEditTime: 2023-09-11 00:01:58
  * @FilePath: /imooc-admin/src/hooks/useLogin.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -11,15 +11,14 @@ import md5 from 'md5'
 import { ref } from 'vue'
 import { useToken } from '@/hooks/useToken'
 import { clearAllItem } from '../utils/storage'
-// import { useUserS } from '@/hooks/useUser'
+// import { useUser } from '@/hooks/useUser'
 import { useRouter } from 'vue-router'
 const loginForm = ref({
   username: 'super-admin',
   password: '123456'
 })
 const { setToken } = useToken()
-// const { setUserInfo } = useUserS()
-// console.log('loginForm', useUserS)
+// const { setUserInfo } = useUser()
 
 export const useLogin = () => {
   const router = useRouter()

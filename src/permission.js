@@ -2,7 +2,7 @@
  * @Author: Ice songbing940823@gmail.com
  * @Date: 2023-06-06 14:12:14
  * @LastEditors: ink-song 229135518@qq.com
- * @LastEditTime: 2023-09-08 23:39:34
+ * @LastEditTime: 2023-09-11 00:12:49
  * @FilePath: /imooc-admin/permission.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -22,6 +22,7 @@ router.beforeEach(async (to, from, next) => {
       next({ path: '/' })
     } else {
       // 判断是否有用户信息
+      console.log('getUserInfo()', getUserInfo())
       if (Object.keys(getUserInfo()).length === 0) {
         setUserInfo()
       }
