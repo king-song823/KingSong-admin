@@ -5,6 +5,7 @@
   >
     <div class="pan-info">
       <div class="pan-info-roles-container">
+        <!-- eslint-disable-next-line -->
         <slot />
       </div>
     </div>

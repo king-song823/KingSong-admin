@@ -1,19 +1,33 @@
 <template>
-  <div
-    :style="{ zIndex: zIndex, height: height, width: width }"
-    class="pan-item"
-  >
-    <div class="pan-info">
-      <div class="pan-info-roles-container">
-        <slot />
-      </div>
-    </div>
-    <div :style="{ backgroundImage: `url(${image})` }" class="pan-thumb"></div>
-  </div>
+  <el-timeline>
+    <el-timeline-item
+      v-for="item in chapterData"
+      :key="item.id"
+      :timestamp="item.timestamp"
+      placement="top"
+    >
+      <el-card>
+        <h4>{{ item.content }}</h4>
+      </el-card>
+    </el-timeline-item>
+  </el-timeline>
 </template>
 
 <script setup>
 import { defineProps } from 'vue'
+import { watchSwitchLang } from '@/utils/i18n'
+import { chapter } from '@/api/user'
+import { ref } from 'vue'
+const chapterData = ref([])
+
+const getChapterData = async () => {
+  chapterData.value = (await chapter()).data
+}
+
+getChapterData()
+// 监听语言切换
+watchSwitchLang(getChapterData)
+
 defineProps({
   image: {
     type: String
