@@ -73,7 +73,7 @@
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
         :current-page="page"
-        :page-sizes="[2, 5, 10, 20]"
+        :page-sizes="[10, 20, 50, 100]"
         :page-size="size"
         layout="total, sizes, prev, pager, next, jumper"
         :total="total"
@@ -103,7 +103,7 @@ const i18n = useI18n()
 const tableData = ref([])
 const total = ref(0)
 const page = ref(1)
-const size = ref(2)
+const size = ref(10)
 /**
  * excel 导出点击事件
  */

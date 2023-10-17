@@ -2,7 +2,7 @@
  * @Author: ice-7777777 15519586771@163.com
  * @Date: 2023-10-16 16:30:52
  * @LastEditors: ice-7777777 15519586771@163.com
- * @LastEditTime: 2023-10-17 14:37:34
+ * @LastEditTime: 2023-10-17 15:54:25
  * @FilePath: /imooc-admin3/src/api/roles.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%A
  */
@@ -36,5 +36,25 @@ export const updateRole = (id, roles) => {
     data: {
       roles
     }
+  })
+}
+
+/**
+ * 获取指定角色的权限
+ */
+export const rolePermission = (roleId) => {
+  return request({
+    url: `/role/permission/${roleId}`
+  })
+}
+
+/**
+ * 为角色修改权限
+ */
+export const distributePermission = (data) => {
+  return request({
+    url: '/role/distribute-permission',
+    method: 'POST',
+    data
   })
 }
