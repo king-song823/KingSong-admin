@@ -2,7 +2,7 @@
  * @Author: ink-song 229135518@qq.com
  * @Date: 2023-09-09 13:37:47
  * @LastEditors: ice-7777777 15519586771@163.com
- * @LastEditTime: 2023-10-26 11:25:50
+ * @LastEditTime: 2023-10-26 14:38:19
  * @FilePath: /imooc-admin 2/src/views/profile/components/ProjectCard.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -70,7 +70,7 @@ defineProps({
 })
 watchSwitchLang(() => {
   if (getToken()) {
-    setUserInfo(userInfo.value)
+    setUserInfo()
   }
 })
 </script>
