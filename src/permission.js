@@ -2,7 +2,7 @@
  * @Author: Ice songbing940823@gmail.com
  * @Date: 2023-06-06 14:12:14
  * @LastEditors: ice-7777777 15519586771@163.com
- * @LastEditTime: 2023-09-14 13:52:16
+ * @LastEditTime: 2023-10-26 11:31:37
  * @FilePath: /imooc-admin/permission.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -13,6 +13,7 @@ import { useUser } from './hooks/useUser'
 const whiteList = ['/login']
 const { getToken } = useToken()
 const { setUserInfo, getUserInfo } = useUser()
+import { usePermission } from './hooks/usePermission'
 
 router.beforeEach(async (to, from, next) => {
   // 存在token，直接跳转
@@ -22,10 +23,17 @@ router.beforeEach(async (to, from, next) => {
       next({ path: '/' })
     } else {
       // 判断是否有用户信息
-      // console.log('getUserInfo()', getUserInfo())
       if (Object.keys(getUserInfo()).length === 0) {
         setUserInfo()
       }
+
+      const { data } = await setUserInfo()
+      const permission = data?.permission?.menus
+      const { filterRoutes } = usePermission()
+      const filterRoutesList = filterRoutes(permission)
+      filterRoutesList.forEach((item) => {
+        router.addRoute(item)
+      })
       next()
     }
   }

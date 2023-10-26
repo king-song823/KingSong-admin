@@ -1,13 +1,25 @@
 /*
  * @Author: ink-song 229135518@qq.com
  * @Date: 2023-05-16 22:02:24
- * @LastEditors: ink-song 229135518@qq.com
- * @LastEditTime: 2023-09-17 00:12:30
+ * @LastEditors: ice-7777777 15519586771@163.com
+ * @LastEditTime: 2023-10-26 11:38:45
  * @FilePath: /imooc-admin/src/router/index.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import { createRouter, createWebHistory } from 'vue-router'
+import ArticleCreaterRouter from './modules/ArticleCreate'
+import ArticleRouter from './modules/Article'
+import PermissionListRouter from './modules/PermissionList'
+import RoleListRouter from './modules/RoleList'
+import UserManageRouter from './modules/UserManage'
 
+export const asyncRoutes = [
+  RoleListRouter,
+  UserManageRouter,
+  PermissionListRouter,
+  ArticleCreaterRouter,
+  ArticleRouter
+]
 const publicRoutes = [
   {
     path: '/login',
@@ -43,103 +55,7 @@ const publicRoutes = [
   }
 ]
 
-const privateRoutes = [
-  {
-    path: '/user',
-    component: () => import('@/layout/index'),
-    redirect: '/user/manage',
-    meta: {
-      title: 'user',
-      icon: 'personnel'
-    },
-    children: [
-      {
-        path: '/user/manage',
-        component: () => import('@/views/user-manage/index'),
-        meta: {
-          title: 'userManage',
-          icon: 'personnel-manage'
-        }
-      },
-      {
-        path: '/user/role',
-        component: () => import('@/views/role-list/index'),
-        meta: {
-          title: 'roleList',
-          icon: 'role'
-        }
-      },
-      {
-        path: '/user/permission',
-        component: () => import('@/views/permission-list/index'),
-        meta: {
-          title: 'permissionList',
-          icon: 'permission'
-        }
-      },
-      {
-        path: '/user/info/:id',
-        name: 'userInfo',
-        component: () => import('@/views/user-info/index'),
-        props: true,
-        meta: {
-          title: 'userInfo'
-        }
-      },
-      {
-        path: '/user/import',
-        name: 'import',
-        component: () => import('@/views/import/index'),
-        meta: {
-          title: 'excelImport'
-        }
-      }
-    ]
-  },
-  {
-    path: '/article',
-    component: () => import('@/layout/index'),
-    redirect: '/article/ranking',
-    meta: {
-      title: 'article',
-      icon: 'article'
-    },
-    children: [
-      {
-        path: '/article/ranking',
-        component: () => import('@/views/article-ranking/index'),
-        meta: {
-          title: 'articleRanking',
-          icon: 'article-ranking'
-        }
-      },
-      {
-        path: '/article/:id',
-        component: () => import('@/views/article-detail/index'),
-        meta: {
-          title: 'articleDetail'
-        }
-      },
-      {
-        path: '/article/create',
-        component: () => import('@/views/article-create/index'),
-        meta: {
-          title: 'articleCreate',
-          icon: 'article-create'
-        }
-      },
-      {
-        path: '/article/editor/:id',
-        component: () => import('@/views/article-create/index'),
-        meta: {
-          title: 'articleEditor'
-        }
-      }
-    ]
-  }
-]
 const routes = [
-  ...privateRoutes,
   ...publicRoutes,
   {
     path: '/login',
