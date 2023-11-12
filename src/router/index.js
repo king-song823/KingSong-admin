@@ -1,8 +1,8 @@
 /*
  * @Author: ink-song 229135518@qq.com
  * @Date: 2023-05-16 22:02:24
- * @LastEditors: ice-7777777 15519586771@163.com
- * @LastEditTime: 2023-10-26 11:38:45
+ * @LastEditors: ink-song 229135518@qq.com
+ * @LastEditTime: 2023-11-12 22:33:30
  * @FilePath: /imooc-admin/src/router/index.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -13,14 +13,14 @@ import PermissionListRouter from './modules/PermissionList'
 import RoleListRouter from './modules/RoleList'
 import UserManageRouter from './modules/UserManage'
 
-export const asyncRoutes = [
+export const privateRoutes = [
   RoleListRouter,
   UserManageRouter,
   PermissionListRouter,
   ArticleCreaterRouter,
   ArticleRouter
 ]
-const publicRoutes = [
+export const publicRoutes = [
   {
     path: '/login',
     component: () => import('@/views/login/index')
@@ -29,7 +29,6 @@ const publicRoutes = [
     path: '/',
     // 注意：带有路径“/”的记录中的组件“默认”是一个不返回 Promise 的函数
     component: () => import('@/layout/index'),
-
     redirect: '/profile',
     children: [
       {
@@ -40,42 +39,24 @@ const publicRoutes = [
           title: 'profile',
           icon: 'el-icon-user'
         }
-      },
-      {
-        path: '/404',
-        name: '404',
-        component: () => import('@/views/error-page/404')
-      },
-      {
-        path: '/401',
-        name: '401',
-        component: () => import('@/views/error-page/401')
       }
     ]
-  }
-]
-
-const routes = [
-  ...publicRoutes,
-  {
-    path: '/login',
-    name: 'Login',
-    component: () => import('../views/login/index.vue')
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path: '/:catchAll(.*)',
+    name: '404',
+    component: () => import('@/views/error-page/404')
+  },
+  {
+    path: '/401',
+    name: '401',
+    component: () => import('@/views/error-page/401')
   }
 ]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
+  routes: publicRoutes
 })
 
 export default router

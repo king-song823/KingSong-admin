@@ -1,20 +1,20 @@
 /*
  * @Author: Ice songbing940823@gmail.com
  * @Date: 2023-06-06 14:12:14
- * @LastEditors: ice-7777777 15519586771@163.com
- * @LastEditTime: 2023-10-26 14:37:47
+ * @LastEditors: ink-song 229135518@qq.com
+ * @LastEditTime: 2023-11-12 22:39:39
  * @FilePath: /imooc-admin/permission.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import router from './router'
 import { useToken } from './hooks/useToken'
 import { useUser } from './hooks/useUser'
+
 // 白名单
 const whiteList = ['/login']
 const { getToken } = useToken()
 const { setUserInfo } = useUser()
 import { usePermission } from './hooks/usePermission'
-
 router.beforeEach(async (to, from, next) => {
   // 存在token，直接跳转
   // console.log('to.path', getToken())
