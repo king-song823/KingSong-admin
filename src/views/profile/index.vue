@@ -2,7 +2,7 @@
  * @Author: ink-song 229135518@qq.com
  * @Date: 2023-08-23 13:44:06
  * @LastEditors: ice-7777777 15519586771@163.com
- * @LastEditTime: 2023-10-26 18:23:43
+ * @LastEditTime: 2023-11-17 14:11:13
  * @FilePath: /imooc-admin 2/src/views/profile/index.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -13,7 +13,7 @@
         <project-card class="user-card" :features="featureData"></project-card>
       </el-col>
       <el-col :span="18">
-        <span v-permission="['distributePermission']">123123</span>
+        <!-- <span v-permission="['distributePermission']">权限按钮控制</span> -->
         <el-card>
           <el-tabs v-model="activeName">
             <el-tab-pane :label="$t('msg.profile.feature')" name="feature">

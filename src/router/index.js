@@ -1,8 +1,8 @@
 /*
  * @Author: ink-song 229135518@qq.com
  * @Date: 2023-05-16 22:02:24
- * @LastEditors: ink-song 229135518@qq.com
- * @LastEditTime: 2023-11-12 22:33:30
+ * @LastEditors: ice-7777777 15519586771@163.com
+ * @LastEditTime: 2023-11-21 14:26:51
  * @FilePath: /imooc-admin/src/router/index.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -12,7 +12,6 @@ import ArticleRouter from './modules/Article'
 import PermissionListRouter from './modules/PermissionList'
 import RoleListRouter from './modules/RoleList'
 import UserManageRouter from './modules/UserManage'
-
 export const privateRoutes = [
   RoleListRouter,
   UserManageRouter,
@@ -41,11 +40,6 @@ export const publicRoutes = [
         }
       }
     ]
-  },
-  {
-    path: '/:catchAll(.*)',
-    name: '404',
-    component: () => import('@/views/error-page/404')
   },
   {
     path: '/401',

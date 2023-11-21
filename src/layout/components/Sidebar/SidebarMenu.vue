@@ -1,8 +1,8 @@
 <!--
  * @Author: ice-7777777 15519586771@163.com
  * @Date: 2023-06-26 09:36:08
- * @LastEditors: ink-song 229135518@qq.com
- * @LastEditTime: 2023-11-12 22:07:13
+ * @LastEditors: ice-7777777 15519586771@163.com
+ * @LastEditTime: 2023-11-21 14:29:30
  * @FilePath: /imooc-admin/src/layout/components/Sidebar/SidebarMenu.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -24,23 +24,27 @@
   </el-menu>
 </template>
 <script setup>
-import { useRouter, useRoute } from 'vue-router'
+import { useRoute } from 'vue-router'
 import SidebarItem from '../SidebarItem.vue'
-const router = useRouter()
+import router from '../../../router'
 import { useSidebarOpened } from '@/hooks/useSidebarOpened'
 const { sidebarOpened } = useSidebarOpened()
 import variables from '@/styles/variables.scss'
-import { computed } from 'vue'
+import { computed, watch } from 'vue'
 import { filterRouters, generateMenus } from '@/utils/route'
-// import { usePermission } from '../../../hooks/usePermission'
+import { usePermission } from '@/hooks/usePermission'
+const { routeList } = usePermission()
 const route = useRoute()
-// const { setRoute } = usePermission()
 const routes = computed(() => {
-  // setRoute(route)
   const filterRoutes = filterRouters(router.getRoutes())
-  console.log('筛选过的数据', filterRoutes, '原始数据', router.getRoutes())
   return generateMenus(filterRoutes)
 })
+watch(
+  () => routeList,
+  () => {
+    console.log('路由变化了')
+  }
+)
 const activeMenu = computed(() => {
   const { path } = route
   return path
