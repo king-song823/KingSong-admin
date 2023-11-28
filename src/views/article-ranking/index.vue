@@ -2,27 +2,27 @@
  * @Author: ice-7777777 15519586771@163.com
  * @Date: 2023-06-26 09:36:08
  * @LastEditors: ice-7777777 15519586771@163.com
- * @LastEditTime: 2023-11-17 18:11:53
+ * @LastEditTime: 2023-11-28 09:49:03
  * @FilePath: /imooc-admin/src/views/article-ranking/index.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
 <template>
   <div class="article-ranking-container">
+    <el-card class="header">
+      <div class="dynamic-box">
+        <span class="title">{{ $t('msg.article.dynamicTitle') }}</span>
+        <el-checkbox-group v-model="selectDynamicLabel">
+          <el-checkbox
+            v-for="(item, index) in dynamicData"
+            :label="item.label"
+            :key="index"
+            >{{ item.label }}</el-checkbox
+          >
+        </el-checkbox-group>
+      </div>
+    </el-card>
     <el-card>
       <el-table ref="tableRef" :data="tableData" border>
-        <el-card class="header">
-          <div class="dynamic-box">
-            <span class="title">{{ $t('msg.article.dynamicTitle') }}</span>
-            <el-checkbox-group v-model="selectDynamicLabel">
-              <el-checkbox
-                v-for="(item, index) in dynamicData"
-                :label="item.label"
-                :key="index"
-                >{{ item.label }}</el-checkbox
-              >
-            </el-checkbox-group>
-          </div>
-        </el-card>
         <el-table-column
           v-for="(item, index) in tableColumns"
           :key="index"
@@ -42,7 +42,6 @@
           </template>
         </el-table-column>
       </el-table>
-
       <el-pagination
         class="pagination"
         @size-change="handleSizeChange"
@@ -74,6 +73,7 @@ const getListData = async () => {
     page: page.value,
     size: size.value
   })
+  console.log(result)
   tableData.value = result.data.list
   total.value = result.data.total
 }

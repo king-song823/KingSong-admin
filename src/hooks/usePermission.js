@@ -2,7 +2,7 @@
  * @Author: ice-7777777 15519586771@163.com
  * @Date: 2023-10-25 14:14:30
  * @LastEditors: ice-7777777 15519586771@163.com
- * @LastEditTime: 2023-11-21 16:39:41
+ * @LastEditTime: 2023-11-21 16:40:57
  * @FilePath: /imooc-admin3/src/hooks/usePermission.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -20,7 +20,7 @@ export function usePermission() {
     permissionList?.forEach((item) => {
       route.push(...privateRoutes.filter((route) => route.name === item))
     })
-    setRoute()
+    // setRoute()
     return route
   }
 
