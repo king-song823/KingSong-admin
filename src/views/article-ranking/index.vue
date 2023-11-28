@@ -2,7 +2,7 @@
  * @Author: ice-7777777 15519586771@163.com
  * @Date: 2023-06-26 09:36:08
  * @LastEditors: ice-7777777 15519586771@163.com
- * @LastEditTime: 2023-11-28 09:49:03
+ * @LastEditTime: 2023-11-28 11:26:09
  * @FilePath: /imooc-admin/src/views/article-ranking/index.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -57,9 +57,10 @@
   </div>
 </template>
 <script setup>
-import { ref, onActivated } from 'vue'
+import { ref, onActivated, onMounted } from 'vue'
 import { getArticleList } from '@/api/article'
 import { watchSwitchLang } from '@/utils/i18n'
+import { tableRef, initSortable } from './sortbale'
 import { dynamicData, selectDynamicLabel, tableColumns } from './dynamic'
 // 数据相关
 const tableData = ref([])
@@ -73,7 +74,6 @@ const getListData = async () => {
     page: page.value,
     size: size.value
   })
-  console.log(result)
   tableData.value = result.data.list
   total.value = result.data.total
 }
@@ -90,6 +90,11 @@ const handleSizeChange = (currentSize) => {
   size.value = currentSize
   getListData()
 }
+
+// 表格拖拽相关
+onMounted(() => {
+  initSortable(tableData.value, getListData)
+})
 
 /**
  * 页码改变触发
@@ -117,6 +122,12 @@ const handleCurrentChange = (currentPage) => {
 
   ::v-deep .el-table__row {
     cursor: pointer;
+  }
+
+  ::v-deep .sortable-ghost {
+    opacity: 0.6;
+    color: #fff !important;
+    background: #304156 !important;
   }
 
   .pagination {
