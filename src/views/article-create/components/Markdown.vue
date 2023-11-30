@@ -1,39 +1,103 @@
-<!--
- * @Author: ink-song 229135518@qq.com
- * @Date: 2023-11-30 21:13:56
- * @LastEditors: ink-song 229135518@qq.com
- * @LastEditTime: 2023-11-30 21:14:11
- * @FilePath: /imooc-admin 2/src/views/article-create/components/Markdown.vue
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
--->
 <template>
-  <div class="article-create">
-    <el-card>
-      <el-input
-        class="title-input"
-        :placeholder="$t('msg.article.titlePlaceholder')"
-        v-model="title"
-        maxlength="20"
-        clearable
-      >
-      </el-input>
-      <el-tabs v-model="activeName">
-        <el-tab-pane :label="$t('msg.article.markdown')" name="markdown">
-          <markdown></markdown>
-        </el-tab-pane>
-        <el-tab-pane :label="$t('msg.article.richText')" name="editor">
-          <editor></editor>
-        </el-tab-pane>
-      </el-tabs>
-    </el-card>
+  <div class="markdown-container">
+    <!-- 渲染区 -->
+    <div id="markdown-box"></div>
+    <div class="bottom">
+      <el-button type="primary" @click="onSubmitClick">{{
+        $t('msg.article.commit')
+      }}</el-button>
+    </div>
   </div>
 </template>
 
 <script setup>
-import Editor from './components/Editor.vue'
-import Markdown from './components/Markdown.vue'
-import { ref } from 'vue'
+import MkEditor from '@toast-ui/editor'
+import '@toast-ui/editor/dist/toastui-editor.css'
+import '@toast-ui/editor/dist/i18n/zh-cn'
+import { onMounted, defineProps, defineEmits, watch } from 'vue'
+import { useLanguage } from '@/hooks/useLanguage'
+import { watchSwitchLang } from '@/utils/i18n'
+import { commitArticle, editArticle } from './commit'
+const props = defineProps({
+  title: {
+    required: true,
+    type: String
+  },
+  detail: {
+    type: Object
+  }
+})
 
-const activeName = ref('markdown')
-const title = ref('')
+// Editor实例
+let mkEditor
+// 处理离开页面切换语言导致 dom 无法被获取
+let el
+
+// 编辑相关
+watch(
+  () => props.detail,
+  (val) => {
+    if (val && val.content) {
+      mkEditor?.setHTML(val.content)
+    }
+  },
+  {
+    immediate: true
+  }
+)
+
+// 处理提交
+const onSubmitClick = async () => {
+  if (props.detail && props.detail._id) {
+    // 编辑文章
+    await editArticle({
+      id: props.detail._id,
+      title: props.title,
+      content: mkEditor.getHTML()
+    })
+  } else {
+    // 创建文章
+    await commitArticle({
+      title: props.title,
+      content: mkEditor.getHTML()
+    })
+  }
+
+  mkEditor.reset()
+  emits('onSuccess')
+}
+const { language } = useLanguage()
+
+const emits = defineEmits(['onSuccess'])
+const initEditor = () => {
+  mkEditor = new MkEditor({
+    el,
+    height: '500px',
+    previewStyle: 'vertical',
+    language: language.value === 'zh' ? 'zh-CN' : 'en'
+  })
+
+  mkEditor.getMarkdown()
+}
+onMounted(() => {
+  el = document.querySelector('#markdown-box')
+  initEditor()
+})
+
+watchSwitchLang(() => {
+  if (!el) return
+  const htmlStr = mkEditor.getHTML()
+  mkEditor.destroy()
+  initEditor()
+  mkEditor.setHTML(htmlStr)
+})
 </script>
+
+<style lang="scss" scoped>
+.markdown-container {
+  .bottom {
+    margin-top: 20px;
+    text-align: right;
+  }
+}
+</style>

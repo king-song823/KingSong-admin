@@ -1,8 +1,8 @@
 /*
  * @Author: ice-7777777 15519586771@163.com
  * @Date: 2023-11-14 11:01:48
- * @LastEditors: ice-7777777 15519586771@163.com
- * @LastEditTime: 2023-11-28 15:15:24
+ * @LastEditors: ink-song 229135518@qq.com
+ * @LastEditTime: 2023-11-30 22:16:04
  * @FilePath: /imooc-admin/src/api/article.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -44,5 +44,27 @@ export const deleteArticle = (articleId) => {
 export const articleDetail = (articleId) => {
   return request({
     url: `/article/${articleId}`
+  })
+}
+
+/**
+ * 创建文章
+ */
+export const createArticle = (data) => {
+  return request({
+    url: '/article/create',
+    method: 'POST',
+    data
+  })
+}
+
+/**
+ * 编辑文章详情
+ */
+export const articleEdit = (data) => {
+  return request({
+    url: '/article/edit',
+    method: 'POST',
+    data
   })
 }
