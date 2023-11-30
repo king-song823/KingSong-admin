@@ -1,8 +1,8 @@
 /*
  * @Author: ink-song 229135518@qq.com
  * @Date: 2023-05-23 22:44:25
- * @LastEditors: Ice songbing940823@gmail.com
- * @LastEditTime: 2023-05-31 09:37:15
+ * @LastEditors: ink-song 229135518@qq.com
+ * @LastEditTime: 2023-11-30 21:50:40
  * @FilePath: /imooc-admin/vue.config.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -25,6 +25,12 @@ module.exports = {
       .options({
         symbolId: 'icon-[name]'
       })
+      .end()
+    config.module
+      .rule('cjs')
+      .test(/\.cjs$/)
+      .use('babel-loader')
+      .loader('babel-loader')
       .end()
   },
   devServer: {
