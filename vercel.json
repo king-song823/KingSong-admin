@@ -3,7 +3,7 @@
     "routes": [
       {
         "src": "/api/(.*)",
-        "dest": "https://api.imooc-admin.lgdsunday.club/$1"
+        "dest": "https://api.imooc-admin.lgdsunday.club/api/$1"
       }
     ]
   }
